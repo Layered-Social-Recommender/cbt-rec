@@ -1,0 +1,25 @@
+{
+  "collection_timestamp": "2026-09-06T20:22:38.696392",
+  "mastodon_instance": "mastodon.social",
+  "seed_account": "mastodon",
+  "seed_id": "13179",
+  "collection_limits": {
+    "max_accounts_explored": 3,
+    "max_followers_per_account": 40,
+    "max_following_per_account": 40,
+    "max_statuses_per_account": 40
+  },
+  "api_endpoints_used": [
+    "/api/v1/accounts/lookup",
+    "/api/v1/accounts/:id",
+    "/api/v1/accounts/:id/following",
+    "/api/v1/accounts/:id/followers",
+    "/api/v1/accounts/:id/statuses"
+  ],
+  "run_identifier": "run_1788706358",
+  "stats": {
+    "accounts_explored": 3,
+    "relationships_collected": 215,
+    "statuses_collected": 120
+  }
+}

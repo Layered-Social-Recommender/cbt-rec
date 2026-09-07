@@ -1,0 +1,59 @@
+{
+  "id": "110551446477147624",
+  "username": "iftas",
+  "acct": "iftas@mastodon.iftas.org",
+  "display_name": "IFTAS",
+  "locked": false,
+  "bot": false,
+  "discoverable": true,
+  "indexable": true,
+  "group": false,
+  "created_at": "2023-05-26T00:00:00.000Z",
+  "note": "<p>⁂ Independent Federated Trust and Safety - We support the people making the Social Web safer by convening and creating best practice, resources and services for open social moderators, community managers, and service admins.</p><p><a href=\"https://mastodon.iftas.org/tags/FediMods\" class=\"mention hashtag\" rel=\"nofollow noopener\" target=\"_blank\">#<span>FediMods</span></a> <a href=\"https://mastodon.iftas.org/tags/FediAdmin\" class=\"mention hashtag\" rel=\"nofollow noopener\" target=\"_blank\">#<span>FediAdmin</span></a> <a href=\"https://mastodon.iftas.org/tags/MastoMods\" class=\"mention hashtag\" rel=\"nofollow noopener\" target=\"_blank\">#<span>MastoMods</span></a> <a href=\"https://mastodon.iftas.org/tags/MastoAdmin\" class=\"mention hashtag\" rel=\"nofollow noopener\" target=\"_blank\">#<span>MastoAdmin</span></a> <a href=\"https://mastodon.iftas.org/tags/Moderation\" class=\"mention hashtag\" rel=\"nofollow noopener\" target=\"_blank\">#<span>Moderation</span></a> <a href=\"https://mastodon.iftas.org/tags/TrustAndSafety\" class=\"mention hashtag\" rel=\"nofollow noopener\" target=\"_blank\">#<span>TrustAndSafety</span></a></p>",
+  "url": "https://mastodon.iftas.org/@iftas",
+  "uri": "https://mastodon.iftas.org/users/iftas",
+  "avatar": "https://files.mastodon.social/cache/accounts/avatars/110/551/446/477/147/624/original/6a20ba9f85a52fc7.png",
+  "avatar_static": "https://files.mastodon.social/cache/accounts/avatars/110/551/446/477/147/624/original/6a20ba9f85a52fc7.png",
+  "avatar_description": "",
+  "header": "https://files.mastodon.social/cache/accounts/headers/110/551/446/477/147/624/original/fcb0b101987e44ae.png",
+  "header_static": "https://files.mastodon.social/cache/accounts/headers/110/551/446/477/147/624/original/fcb0b101987e44ae.png",
+  "header_description": "",
+  "followers_count": 2761,
+  "following_count": 86,
+  "statuses_count": 1536,
+  "last_status_at": "2026-09-04",
+  "hide_collections": false,
+  "show_media": true,
+  "show_media_replies": true,
+  "show_featured": true,
+  "feature_approval": {
+    "automatic": [
+      "public"
+    ],
+    "manual": [],
+    "current_user": "denied"
+  },
+  "emojis": [],
+  "fields": [
+    {
+      "name": "About IFTAS",
+      "value": "<a href=\"https://about.iftas.org\" rel=\"nofollow noopener\" translate=\"no\" target=\"_blank\"><span class=\"invisible\">https://</span><span class=\"\">about.iftas.org</span><span class=\"invisible\"></span></a>",
+      "verified_at": null
+    },
+    {
+      "name": "Moderator / Admin Resources",
+      "value": "<a href=\"https://about.iftas.org/trust-safety-services/\" rel=\"nofollow noopener\" translate=\"no\" target=\"_blank\"><span class=\"invisible\">https://</span><span class=\"ellipsis\">about.iftas.org/trust-safety-s</span><span class=\"invisible\">ervices/</span></a>",
+      "verified_at": null
+    },
+    {
+      "name": "Trust & Safety Community Library",
+      "value": "<a href=\"https://about.iftas.org/trust-safety-services/iftas-community-library/\" rel=\"nofollow noopener\" translate=\"no\" target=\"_blank\"><span class=\"invisible\">https://</span><span class=\"ellipsis\">about.iftas.org/trust-safety-s</span><span class=\"invisible\">ervices/iftas-community-library/</span></a>",
+      "verified_at": null
+    },
+    {
+      "name": "Support Our Work",
+      "value": "<a href=\"https://about.iftas.org/donate/\" rel=\"nofollow noopener\" translate=\"no\" target=\"_blank\"><span class=\"invisible\">https://</span><span class=\"\">about.iftas.org/donate/</span><span class=\"invisible\"></span></a>",
+      "verified_at": null
+    }
+  ]
+}

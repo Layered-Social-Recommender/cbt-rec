@@ -1,0 +1,14 @@
+{
+  "mastodon_instance": "mastodon.social",
+  "seed_account": "mastodon",
+  "collection_limits": {
+    "max_accounts_explored": 3,
+    "max_followers_per_account": 40,
+    "max_following_per_account": 40,
+    "max_statuses_per_account": 40
+  },
+  "rate_limit": {
+    "requests_per_second": 1.0,
+    "max_retries": 1
+  }
+}
