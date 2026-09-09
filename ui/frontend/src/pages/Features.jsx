@@ -20,12 +20,12 @@ const CRITERIA_DESC = {
 };
 
 function ScoreBar({ value }) {
-  if (value === null || value === undefined) return <span style={{ color: '#94a3b8' }}>—</span>;
+  if (value === null || value === undefined) return <span style={{ color: '#71717a' }}>—</span>;
   const pct = (value * 100).toFixed(1);
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-      <div style={{ flex: 1, background: '#e2e8f0', borderRadius: 9999, height: 8 }}>
-        <div style={{ width: `${pct}%`, background: '#3b82f6', borderRadius: 9999, height: '100%' }} />
+      <div style={{ flex: 1, background: '#e5e5e5', borderRadius: 2, height: 8 }}>
+        <div style={{ width: `${pct}%`, background: '#171717', borderRadius: 2, height: '100%' }} />
       </div>
       <span style={{ fontSize: '0.85rem', fontWeight: 600, minWidth: 40, fontFamily: 'monospace' }}>{Number(value).toFixed(3)}</span>
     </div>
@@ -35,21 +35,21 @@ function ScoreBar({ value }) {
 function FeatureRow({ label, feat, rawFeat, desc, expanded, onToggle, value }) {
   const displayVal = value !== null && value !== undefined ? value : null;
   return (
-    <div style={{ borderBottom: '1px solid #e2e8f0', padding: '0.75rem 0' }}>
+    <div style={{ borderBottom: '1px solid #d4d4d4', padding: '0.75rem 0' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', cursor: 'pointer' }} onClick={onToggle}>
         <div style={{ flex: 1 }}>
           <div style={{ fontWeight: 600 }}>{label}</div>
-          {displayVal !== null ? <ScoreBar value={displayVal} /> : <span style={{ color: '#94a3b8' }}>—</span>}
+          {displayVal !== null ? <ScoreBar value={displayVal} /> : <span style={{ color: '#71717a' }}>—</span>}
         </div>
-        <span style={{ color: '#94a3b8', fontSize: '1.25rem' }}>{expanded ? '▲' : '▼'}</span>
+        <span style={{ color: '#71717a', fontSize: '1.25rem' }}>{expanded ? '▲' : '▼'}</span>
       </div>
       {expanded && (
-        <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '0.375rem', padding: '1rem', marginTop: '0.75rem' }}>
+        <div style={{ background: '#fafafa', border: '1px solid #d4d4d4', borderRadius: '0.25rem', padding: '1rem', marginTop: '0.75rem' }}>
           <div style={{ display: 'flex', gap: '2rem', fontSize: '0.9rem', marginBottom: '0.5rem' }}>
-            <div><span style={{ color: '#64748b' }}>Normalized:</span> <strong>{displayVal !== null ? displayVal.toFixed(6) : '—'}</strong></div>
-            <div><span style={{ color: '#64748b' }}>Raw:</span> <strong>{rawFeat !== null && rawFeat !== undefined ? Number(rawFeat).toFixed(6) : '—'}</strong></div>
+            <div><span style={{ color: '#71717a' }}>Normalized:</span> <strong>{displayVal !== null ? displayVal.toFixed(6) : '—'}</strong></div>
+            <div><span style={{ color: '#71717a' }}>Raw:</span> <strong>{rawFeat !== null && rawFeat !== undefined ? Number(rawFeat).toFixed(6) : '—'}</strong></div>
           </div>
-          <p style={{ color: '#475569', fontSize: '0.875rem' }}>{desc}</p>
+          <p style={{ color: '#52525b', fontSize: '0.875rem' }}>{desc}</p>
         </div>
       )}
     </div>
@@ -101,7 +101,7 @@ export default function Features() {
             <input className="search-input" placeholder="Search..." value={search} onChange={e => setSearch(e.target.value)} style={{ marginBottom: '0.75rem' }} />
             <div style={{ maxHeight: 500, overflowY: 'auto' }}>
               {filtered.map(u => (
-                <div key={u.canonical_acct} onClick={() => select(u)} style={{ padding: '0.5rem 0.75rem', cursor: 'pointer', borderRadius: '0.375rem', background: selected === u.canonical_acct ? '#dbeafe' : 'transparent', display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.125rem' }}>
+                <div key={u.canonical_acct} onClick={() => select(u)} style={{ padding: '0.5rem 0.75rem', cursor: 'pointer', borderRadius: '0.25rem', background: selected === u.canonical_acct ? '#f4f4f5' : 'transparent', display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.125rem' }}>
                   <div style={{ flex: 1, fontSize: '0.8rem', fontFamily: 'monospace', wordBreak: 'break-all' }}>{u.canonical_acct}</div>
                   {u.is_stub ? <span className="badge badge-warning" style={{ fontSize: '0.65rem' }}>Stub</span> : <span className="badge badge-success" style={{ fontSize: '0.65rem' }}>✓</span>}
                 </div>
@@ -112,7 +112,7 @@ export default function Features() {
 
         <div style={{ flex: 1 }}>
           {!feat && !loadingDetail && (
-            <div className="card"><p style={{ color: '#64748b' }}>Select a user to view their feature profile.</p></div>
+            <div className="card"><p style={{ color: '#71717a' }}>Select a user to view their feature profile.</p></div>
           )}
           {loadingDetail && <div className="card"><p>Loading...</p></div>}
           {feat && !loadingDetail && (
@@ -145,7 +145,7 @@ export default function Features() {
                 <h2>Behaviour Score</h2>
                 <div className="alert alert-info">Behaviour Score is separate from the six MCDM trust criteria and is intended for downstream recommendation ranking.</div>
                 {feat.is_stub ? (
-                  <p style={{ color: '#94a3b8' }}>— Not available for stub accounts.</p>
+                  <p style={{ color: '#71717a' }}>— Not available for stub accounts.</p>
                 ) : (
                   <>
                     <div style={{ marginBottom: '1rem' }}>
@@ -154,11 +154,11 @@ export default function Features() {
                     </div>
                     <table>
                       <tbody>
-                        <tr><td style={{ color: '#64748b' }}>Behaviour Score (raw)</td><td>{feat.behaviour_score_raw !== null ? Number(feat.behaviour_score_raw).toFixed(6) : '—'}</td></tr>
-                        <tr><td style={{ color: '#64748b' }}>Reply Ratio</td><td>{feat.reply_ratio !== null && feat.reply_ratio !== undefined ? Number(feat.reply_ratio).toFixed(4) : '—'}</td></tr>
-                        <tr><td style={{ color: '#64748b' }}>Reblog Ratio</td><td>{feat.reblog_ratio !== null && feat.reblog_ratio !== undefined ? Number(feat.reblog_ratio).toFixed(4) : '—'}</td></tr>
-                        <tr><td style={{ color: '#64748b' }}>Mention Ratio</td><td>{feat.mention_ratio !== null && feat.mention_ratio !== undefined ? Number(feat.mention_ratio).toFixed(4) : '—'}</td></tr>
-                        <tr><td style={{ color: '#64748b' }}>Posting Regularity</td><td>{feat.posting_regularity !== null && feat.posting_regularity !== undefined ? Number(feat.posting_regularity).toFixed(4) : '—'}</td></tr>
+                        <tr><td style={{ color: '#71717a' }}>Behaviour Score (raw)</td><td>{feat.behaviour_score_raw !== null ? Number(feat.behaviour_score_raw).toFixed(6) : '—'}</td></tr>
+                        <tr><td style={{ color: '#71717a' }}>Reply Ratio</td><td>{feat.reply_ratio !== null && feat.reply_ratio !== undefined ? Number(feat.reply_ratio).toFixed(4) : '—'}</td></tr>
+                        <tr><td style={{ color: '#71717a' }}>Reblog Ratio</td><td>{feat.reblog_ratio !== null && feat.reblog_ratio !== undefined ? Number(feat.reblog_ratio).toFixed(4) : '—'}</td></tr>
+                        <tr><td style={{ color: '#71717a' }}>Mention Ratio</td><td>{feat.mention_ratio !== null && feat.mention_ratio !== undefined ? Number(feat.mention_ratio).toFixed(4) : '—'}</td></tr>
+                        <tr><td style={{ color: '#71717a' }}>Posting Regularity</td><td>{feat.posting_regularity !== null && feat.posting_regularity !== undefined ? Number(feat.posting_regularity).toFixed(4) : '—'}</td></tr>
                       </tbody>
                     </table>
                   </>
@@ -169,14 +169,14 @@ export default function Features() {
                 <h2>Context Profile</h2>
                 <div className="alert alert-info">Context Profile captures per-user contextual attributes for downstream pairwise context scoring. It is not a trust criterion.</div>
                 {feat.is_stub ? (
-                  <p style={{ color: '#94a3b8' }}>— Not available for stub accounts.</p>
+                  <p style={{ color: '#71717a' }}>— Not available for stub accounts.</p>
                 ) : (
                   <table>
                     <tbody>
-                      <tr><td style={{ color: '#64748b' }}>Primary Language</td><td>{feat.primary_language ?? '—'}</td></tr>
-                      <tr><td style={{ color: '#64748b' }}>Top Hashtags</td><td style={{ fontFamily: 'monospace', fontSize: '0.8rem' }}>{feat.top_hashtags ?? '—'}</td></tr>
-                      <tr><td style={{ color: '#64748b' }}>Recent Activity Score</td><td>{feat.recent_activity_score !== null && feat.recent_activity_score !== undefined ? Number(feat.recent_activity_score).toFixed(4) : '—'}</td></tr>
-                      <tr><td style={{ color: '#64748b' }}>Interaction Recency Score</td><td>{feat.interaction_recency_score !== null && feat.interaction_recency_score !== undefined ? Number(feat.interaction_recency_score).toFixed(4) : '—'}</td></tr>
+                      <tr><td style={{ color: '#71717a' }}>Primary Language</td><td>{feat.primary_language ?? '—'}</td></tr>
+                      <tr><td style={{ color: '#71717a' }}>Top Hashtags</td><td style={{ fontFamily: 'monospace', fontSize: '0.8rem' }}>{feat.top_hashtags ?? '—'}</td></tr>
+                      <tr><td style={{ color: '#71717a' }}>Recent Activity Score</td><td>{feat.recent_activity_score !== null && feat.recent_activity_score !== undefined ? Number(feat.recent_activity_score).toFixed(4) : '—'}</td></tr>
+                      <tr><td style={{ color: '#71717a' }}>Interaction Recency Score</td><td>{feat.interaction_recency_score !== null && feat.interaction_recency_score !== undefined ? Number(feat.interaction_recency_score).toFixed(4) : '—'}</td></tr>
                     </tbody>
                   </table>
                 )}

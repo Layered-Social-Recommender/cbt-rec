@@ -12,7 +12,7 @@ const CRITERIA_LABELS = {
   reciprocity: 'Reciprocity',
   reputation: 'Reputation',
 };
-const COLORS = ['#3b82f6','#10b981','#8b5cf6','#f59e0b','#ef4444','#06b6d4'];
+const COLORS = ['#2563eb','#16a34a','#9333ea','#ea580c','#0891b2','#dc2626'];
 
 const FORMULA_STEPS = [
   { label: 'Probability Distribution', formula: 'P_ij = x_ij / Σ_k x_kj', desc: 'Normalize each criterion column into a probability distribution over all complete users.' },
@@ -76,28 +76,28 @@ export default function TrustMCDM() {
 
       <div className="card">
         <h2>MCDM Pipeline</h2>
-        <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem', fontSize: '0.85rem', color: '#475569' }}>
+        <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem', fontSize: '0.85rem', color: '#52525b' }}>
           {['Layer 3 User Features', 'Decision Matrix', 'Probability Distribution', 'Negation', 'Euclidean Distance', 'Criterion Weights', 'Weighted Sum', 'Trustworthiness Score'].map((step, i, arr) => (
             <span key={step} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <span style={{ background: '#dbeafe', color: '#1e40af', padding: '0.25rem 0.6rem', borderRadius: '0.25rem', fontWeight: 500 }}>{step}</span>
-              {i < arr.length - 1 && <span style={{ color: '#94a3b8' }}>→</span>}
+              <span style={{ background: '#f4f4f5', color: '#171717', padding: '0.25rem 0.6rem', borderRadius: '0.25rem', fontWeight: 500 }}>{step}</span>
+              {i < arr.length - 1 && <span style={{ color: '#71717a' }}>→</span>}
             </span>
           ))}
         </div>
 
         <div style={{ marginTop: '1.5rem' }}>
-          <button onClick={() => setShowFormulas(f => !f)} style={{ padding: '0.5rem 1rem', border: '1px solid #e2e8f0', borderRadius: '0.375rem', cursor: 'pointer', background: showFormulas ? '#dbeafe' : '#f8fafc', fontWeight: 500 }}>
+          <button onClick={() => setShowFormulas(f => !f)} style={{ padding: '0.5rem 1rem', border: '1px solid #d4d4d4', borderRadius: '0.25rem', cursor: 'pointer', background: showFormulas ? '#e5e5e5' : '#ffffff', fontWeight: 500 }}>
             {showFormulas ? '▲ Hide' : '▼ View'} MCDM Calculation Steps
           </button>
           {showFormulas && (
             <div style={{ marginTop: '1rem' }}>
               {FORMULA_STEPS.map((step, i) => (
-                <div key={step.label} style={{ display: 'flex', gap: '1rem', padding: '0.75rem', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '0.375rem', marginBottom: '0.5rem', alignItems: 'flex-start' }}>
-                  <span style={{ background: '#3b82f6', color: '#fff', borderRadius: '50%', width: 24, height: 24, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: '0.8rem', flexShrink: 0 }}>{i + 1}</span>
+                <div key={step.label} style={{ display: 'flex', gap: '1rem', padding: '0.75rem', background: '#fafafa', border: '1px solid #d4d4d4', borderRadius: '0.25rem', marginBottom: '0.5rem', alignItems: 'flex-start' }}>
+                  <span style={{ background: '#171717', color: '#fff', borderRadius: '2px', width: 24, height: 24, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: '0.8rem', flexShrink: 0 }}>{i + 1}</span>
                   <div>
                     <div style={{ fontWeight: 600 }}>{step.label}</div>
-                    <code style={{ display: 'block', fontSize: '0.85rem', background: '#1e293b', color: '#93c5fd', padding: '0.5rem', borderRadius: '0.25rem', margin: '0.5rem 0', fontFamily: 'monospace' }}>{step.formula}</code>
-                    <p style={{ fontSize: '0.85rem', color: '#475569' }}>{step.desc}</p>
+                    <code style={{ display: 'block', fontSize: '0.85rem', background: '#f4f4f5', color: '#171717', border: '1px solid #e5e5e5', padding: '0.5rem', borderRadius: '0.25rem', margin: '0.5rem 0', fontFamily: 'monospace' }}>{step.formula}</code>
+                    <p style={{ fontSize: '0.85rem', color: '#52525b' }}>{step.desc}</p>
                   </div>
                 </div>
               ))}
@@ -129,11 +129,11 @@ export default function TrustMCDM() {
                 </span>
               ))}
             </div>
-            <div style={{ marginTop: '0.75rem', fontSize: '0.85rem', color: '#475569' }}>
+            <div style={{ marginTop: '0.75rem', fontSize: '0.85rem', color: '#52525b' }}>
               Weight sum: <strong>{weightSum.toFixed(6)}</strong>
               {Math.abs(weightSum - 1.0) < 0.001
-                ? <span style={{ color: '#10b981', marginLeft: '0.5rem' }}>✓ Sums to 1.0</span>
-                : <span style={{ color: '#ef4444', marginLeft: '0.5rem' }}>⚠ Does not sum to 1.0</span>}
+                ? <span style={{ color: '#171717', marginLeft: '0.5rem' }}>✓ Sums to 1.0</span>
+                : <span style={{ color: '#52525b', marginLeft: '0.5rem' }}>⚠ Does not sum to 1.0</span>}
             </div>
           </>
         )}
@@ -146,12 +146,12 @@ export default function TrustMCDM() {
             <input className="search-input" placeholder="Search account..." value={search} onChange={e => setSearch(e.target.value)} />
             <div style={{ maxHeight: 500, overflowY: 'auto' }}>
               {filtered.map(s => (
-                <div key={s.canonical_acct} onClick={() => selectUser(s.canonical_acct)} style={{ padding: '0.5rem 0.75rem', cursor: 'pointer', borderRadius: '0.375rem', background: selectedAcct === s.canonical_acct ? '#dbeafe' : 'transparent', display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.125rem' }}>
+                <div key={s.canonical_acct} onClick={() => selectUser(s.canonical_acct)} style={{ padding: '0.5rem 0.75rem', cursor: 'pointer', borderRadius: '0.25rem', background: selectedAcct === s.canonical_acct ? '#f4f4f5' : 'transparent', display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.125rem' }}>
                   <div style={{ flex: 1, fontSize: '0.8rem', fontFamily: 'monospace', wordBreak: 'break-all' }}>{s.canonical_acct}</div>
                   {s.is_stub ? (
                     <span className="badge badge-warning" style={{ fontSize: '0.65rem' }}>Stub</span>
                   ) : (
-                    <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#3b82f6' }}>{s.trust_score?.toFixed(4) ?? '—'}</span>
+                    <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#171717' }}>{s.trust_score?.toFixed(4) ?? '—'}</span>
                   )}
                 </div>
               ))}
@@ -163,19 +163,19 @@ export default function TrustMCDM() {
           {trustDetail ? (
             <div className="card" style={{ margin: 0 }}>
               <h2>Trustworthiness Estimate</h2>
-              <div style={{ fontFamily: 'monospace', fontSize: '0.85rem', color: '#64748b', marginBottom: '1rem', wordBreak: 'break-all' }}>{trustDetail.canonical_acct}</div>
+              <div style={{ fontFamily: 'monospace', fontSize: '0.85rem', color: '#71717a', marginBottom: '1rem', wordBreak: 'break-all' }}>{trustDetail.canonical_acct}</div>
 
               {trustDetail.is_stub || trustDetail.trust_score === null ? (
                 <>
-                  <div style={{ fontSize: '2rem', fontWeight: 700, color: '#94a3b8', marginBottom: '0.5rem' }}>Unavailable</div>
+                  <div style={{ fontSize: '2rem', fontWeight: 700, color: '#71717a', marginBottom: '0.5rem' }}>Unavailable</div>
                   <div className="alert alert-warning">This account does not have sufficient collected profile-dependent feature data for MCDM scoring.</div>
                 </>
               ) : (
                 <>
-                  <div style={{ fontSize: '3rem', fontWeight: 700, color: '#3b82f6', marginBottom: '0.5rem' }}>{Number(trustDetail.trust_score).toFixed(6)}</div>
+                  <div style={{ fontSize: '3rem', fontWeight: 700, color: '#171717', marginBottom: '0.5rem' }}>{Number(trustDetail.trust_score).toFixed(6)}</div>
                   <div style={{ marginBottom: '1.5rem' }}>
-                    <div style={{ background: '#e2e8f0', borderRadius: 9999, height: 12 }}>
-                      <div style={{ width: `${(trustDetail.trust_score * 100).toFixed(1)}%`, background: '#3b82f6', borderRadius: 9999, height: '100%' }} />
+                    <div style={{ background: '#e5e5e5', borderRadius: 2, height: 12 }}>
+                      <div style={{ width: `${(trustDetail.trust_score * 100).toFixed(1)}%`, background: '#171717', borderRadius: 2, height: '100%' }} />
                     </div>
                   </div>
 
@@ -192,9 +192,9 @@ export default function TrustMCDM() {
                           </tr>
                         );
                       })}
-                      <tr style={{ fontWeight: 700, background: '#f8fafc' }}>
+                      <tr style={{ fontWeight: 700, background: '#f4f4f5' }}>
                         <td>Total</td>
-                        <td style={{ fontFamily: 'monospace', color: '#3b82f6' }}>{Number(trustDetail.trust_score).toFixed(6)}</td>
+                        <td style={{ fontFamily: 'monospace', color: '#171717' }}>{Number(trustDetail.trust_score).toFixed(6)}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -214,9 +214,9 @@ export default function TrustMCDM() {
                   <tbody>
                     {topScores.map((s, i) => (
                       <tr key={s.canonical_acct} style={{ cursor: 'pointer' }} onClick={() => selectUser(s.canonical_acct)}>
-                        <td style={{ fontWeight: 600, color: '#94a3b8' }}>#{i + 1}</td>
+                        <td style={{ fontWeight: 600, color: '#71717a' }}>#{i + 1}</td>
                         <td style={{ fontFamily: 'monospace', fontSize: '0.85rem' }}>{s.canonical_acct}</td>
-                        <td style={{ fontWeight: 700, color: '#3b82f6' }}>{s.trust_score?.toFixed(6)}</td>
+                        <td style={{ fontWeight: 700, color: '#171717' }}>{s.trust_score?.toFixed(6)}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -238,7 +238,7 @@ export default function TrustMCDM() {
           'No invalid/infinite scores',
         ].map(msg => (
           <div key={msg} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.4rem' }}>
-            <span style={{ color: '#10b981', fontWeight: 700 }}>✓</span>
+            <span style={{ color: '#171717', fontWeight: 700 }}>✓</span>
             <span>{msg}</span>
           </div>
         ))}

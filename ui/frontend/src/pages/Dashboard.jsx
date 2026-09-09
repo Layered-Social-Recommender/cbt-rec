@@ -69,19 +69,19 @@ export default function Dashboard() {
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0' }}>
           {layers.map((l, i) => (
             <div key={l.layer} style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem 1.5rem', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '0.5rem', minWidth: 350 }}>
-                <span style={{ fontSize: '1.25rem', fontWeight: 700, color: '#94a3b8' }}>L{l.layer}</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem 1.5rem', background: '#ffffff', border: '1px solid #d4d4d4', borderRadius: '0.25rem', minWidth: 350 }}>
+                <span style={{ fontSize: '1.25rem', fontWeight: 700, color: '#71717a' }}>L{l.layer}</span>
                 <div style={{ flex: 1 }}>
                   {l.path ? (
-                    <Link to={l.path} style={{ fontWeight: 600, textDecoration: 'none', color: '#1e293b' }}>{l.name}</Link>
+                    <Link to={l.path} style={{ fontWeight: 600, textDecoration: 'none', color: '#171717' }}>{l.name}</Link>
                   ) : (
-                    <span style={{ fontWeight: 600, color: '#94a3b8' }}>{l.name}</span>
+                    <span style={{ fontWeight: 600, color: '#a1a1aa' }}>{l.name}</span>
                   )}
                 </div>
                 <span className={`badge ${l.status === 'Coming Next' ? 'badge-muted' : 'badge-success'}`}>{l.status}</span>
               </div>
               {i < layers.length - 1 && (
-                <div style={{ paddingLeft: '1.6rem', color: '#94a3b8', fontSize: '1.25rem', lineHeight: '1.5' }}>↓</div>
+                <div style={{ paddingLeft: '1.6rem', color: '#71717a', fontSize: '1.25rem', lineHeight: '1.5' }}>↓</div>
               )}
             </div>
           ))}
@@ -90,7 +90,7 @@ export default function Dashboard() {
 
       <div className="card">
         <h2>About This Research Prototype</h2>
-        <p style={{ color: '#475569', lineHeight: '1.75' }}>
+        <p style={{ color: '#52525b', lineHeight: '1.75' }}>
           CBT-Rec is a layered, trust-aware and context-aware social recommendation research framework built on real Mastodon network data. This dashboard allows inspection of each pipeline layer — from raw data collection (Layer 1) through social graph construction (Layer 2), feature extraction (Layer 3), and MCDM-based trustworthiness estimation (Layer 4). The Recommendation Engine (Layer 5) is the next phase of implementation.
         </p>
       </div>

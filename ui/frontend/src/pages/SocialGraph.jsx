@@ -72,11 +72,11 @@ export default function SocialGraph() {
   const uniquePairs = new Set(intEdges.map(e => `${e.source}→${e.target}`)).size;
 
   const edgeColor = (link) => {
-    if (link.label === 'follows') return 'rgba(59,130,246,0.4)';
-    if (link.label === 'reply') return 'rgba(16,185,129,0.6)';
-    if (link.label === 'mention') return 'rgba(245,158,11,0.6)';
-    if (link.label === 'reblog') return 'rgba(139,92,246,0.6)';
-    return 'rgba(148,163,184,0.4)';
+    if (link.label === 'follows') return 'rgba(113, 113, 122, 0.4)';
+    if (link.label === 'reply') return 'rgba(82, 82, 91, 0.7)';
+    if (link.label === 'mention') return 'rgba(161, 161, 170, 0.7)';
+    if (link.label === 'reblog') return 'rgba(212, 212, 212, 0.8)';
+    return 'rgba(161, 161, 170, 0.4)';
   };
 
   return (
@@ -107,7 +107,7 @@ export default function SocialGraph() {
       </div>
 
       <div className="card" style={{ marginBottom: '1rem' }}>
-        <p style={{ fontSize: '0.85rem', color: '#64748b' }}>
+        <p style={{ fontSize: '0.85rem', color: '#71717a' }}>
           Structural communities detected in the collected research subgraph. This represents the topology of the bounded dataset — not the Mastodon platform globally.
         </p>
       </div>
@@ -117,11 +117,11 @@ export default function SocialGraph() {
           <div>
             <label style={{ fontSize: '0.85rem', fontWeight: 600, marginRight: '0.5rem' }}>Graph View:</label>
             {[['follow', 'Follow Graph'], ['interaction', 'Interaction Graph'], ['master', 'Master Graph']].map(([v, l]) => (
-              <button key={v} onClick={() => setGraphType(v)} style={{ marginRight: '0.5rem', padding: '0.4rem 0.9rem', borderRadius: '0.375rem', border: '1px solid #e2e8f0', background: graphType === v ? '#3b82f6' : '#fff', color: graphType === v ? '#fff' : '#1e293b', cursor: 'pointer', fontWeight: graphType === v ? 600 : 400 }}>{l}</button>
+              <button key={v} onClick={() => setGraphType(v)} style={{ marginRight: '0.5rem', padding: '0.4rem 0.9rem', borderRadius: '0.25rem', border: '1px solid #d4d4d4', background: graphType === v ? '#171717' : '#fff', color: graphType === v ? '#fff' : '#171717', cursor: 'pointer', fontWeight: graphType === v ? 600 : 400 }}>{l}</button>
             ))}
           </div>
-          <input placeholder="Search node..." value={search} onChange={e => setSearch(e.target.value)} style={{ padding: '0.4rem 0.75rem', border: '1px solid #e2e8f0', borderRadius: '0.375rem', fontSize: '0.9rem' }} />
-          <select value={communityFilter} onChange={e => setCommunityFilter(e.target.value)} style={{ padding: '0.4rem 0.75rem', border: '1px solid #e2e8f0', borderRadius: '0.375rem', fontSize: '0.9rem' }}>
+          <input placeholder="Search node..." value={search} onChange={e => setSearch(e.target.value)} style={{ padding: '0.4rem 0.75rem', border: '1px solid #d4d4d4', borderRadius: '0.25rem', fontSize: '0.9rem' }} />
+          <select value={communityFilter} onChange={e => setCommunityFilter(e.target.value)} style={{ padding: '0.4rem 0.75rem', border: '1px solid #d4d4d4', borderRadius: '0.25rem', fontSize: '0.9rem' }}>
             <option value="all">All Communities</option>
             {communities.slice(0, 50).map(c => <option key={c} value={c}>Community {c}</option>)}
           </select>
@@ -132,8 +132,8 @@ export default function SocialGraph() {
         </div>
 
         <div style={{ display: 'flex', gap: '1.5rem' }}>
-          <div style={{ flex: 1, border: '1px solid #e2e8f0', borderRadius: '0.5rem', overflow: 'hidden', background: '#f8fafc', minHeight: 550 }}>
-            {loading ? <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: 550, color: '#64748b' }}>Loading graph data...</div> : (
+          <div style={{ flex: 1, border: '1px solid #d4d4d4', borderRadius: '0.25rem', overflow: 'hidden', background: '#ffffff', minHeight: 550 }}>
+            {loading ? <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: 550, color: '#71717a' }}>Loading graph data...</div> : (
               <ForceGraph2D
                 ref={graphRef}
                 graphData={graphData}
@@ -159,24 +159,24 @@ export default function SocialGraph() {
                 <h2>Node Details</h2>
                 <table>
                   <tbody>
-                    <tr><td style={{ color: '#64748b' }}>Account</td><td style={{ fontFamily: 'monospace', fontSize: '0.8rem', wordBreak: 'break-all' }}>{selectedNode.id}</td></tr>
-                    <tr><td style={{ color: '#64748b' }}>Community</td><td>{selectedNode.community ?? '—'}</td></tr>
-                    <tr><td style={{ color: '#64748b' }}>In-degree</td><td>{selectedNode.inDegree ?? '—'}</td></tr>
-                    <tr><td style={{ color: '#64748b' }}>Out-degree</td><td>{selectedNode.outDegree ?? '—'}</td></tr>
-                    <tr><td style={{ color: '#64748b' }}>PageRank</td><td>{selectedNode.pagerank?.toFixed(6) ?? '—'}</td></tr>
-                    <tr><td style={{ color: '#64748b' }}>Clustering (Follow Graph)</td><td>{selectedNode.clustering?.toFixed(6) ?? '—'}</td></tr>
-                    <tr><td style={{ color: '#64748b' }}>Status</td><td><span className={`badge ${selectedNode.is_stub ? 'badge-warning' : 'badge-success'}`}>{selectedNode.is_stub ? 'Stub' : 'Complete'}</span></td></tr>
+                    <tr><td style={{ color: '#71717a' }}>Account</td><td style={{ fontFamily: 'monospace', fontSize: '0.8rem', wordBreak: 'break-all' }}>{selectedNode.id}</td></tr>
+                    <tr><td style={{ color: '#71717a' }}>Community</td><td>{selectedNode.community ?? '—'}</td></tr>
+                    <tr><td style={{ color: '#71717a' }}>In-degree</td><td>{selectedNode.inDegree ?? '—'}</td></tr>
+                    <tr><td style={{ color: '#71717a' }}>Out-degree</td><td>{selectedNode.outDegree ?? '—'}</td></tr>
+                    <tr><td style={{ color: '#71717a' }}>PageRank</td><td>{selectedNode.pagerank?.toFixed(6) ?? '—'}</td></tr>
+                    <tr><td style={{ color: '#71717a' }}>Clustering (Follow Graph)</td><td>{selectedNode.clustering?.toFixed(6) ?? '—'}</td></tr>
+                    <tr><td style={{ color: '#71717a' }}>Status</td><td><span className={`badge ${selectedNode.is_stub ? 'badge-warning' : 'badge-success'}`}>{selectedNode.is_stub ? 'Stub' : 'Complete'}</span></td></tr>
                   </tbody>
                 </table>
               </div>
             ) : (
               <div className="card" style={{ margin: 0 }}>
                 <h2>Node Details</h2>
-                <p style={{ color: '#64748b', fontSize: '0.9rem' }}>Click a node to view its graph metrics.</p>
+                <p style={{ color: '#71717a', fontSize: '0.9rem' }}>Click a node to view its graph metrics.</p>
                 <div style={{ marginTop: '1rem' }}>
                   <div style={{ fontWeight: 600, marginBottom: '0.5rem', fontSize: '0.85rem' }}>Edge Legend</div>
                   {graphType !== 'follow' && <>
-                    {[['Reply', '#10b981'], ['Mention', '#f59e0b'], ['Reblog', '#8b5cf6']].map(([l, c]) => (
+                    {[['Reply', '#52525b'], ['Mention', '#a1a1aa'], ['Reblog', '#d4d4d4']].map(([l, c]) => (
                       <div key={l} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem', fontSize: '0.85rem' }}>
                         <span style={{ width: 12, height: 12, borderRadius: '50%', background: c, display: 'inline-block' }} />{l}
                       </div>
@@ -184,7 +184,7 @@ export default function SocialGraph() {
                   </>}
                   {graphType !== 'interaction' && (
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.85rem' }}>
-                      <span style={{ width: 12, height: 12, borderRadius: '50%', background: '#3b82f6', display: 'inline-block' }} />Follow
+                      <span style={{ width: 12, height: 12, borderRadius: '50%', background: '#71717a', display: 'inline-block' }} />Follow
                     </div>
                   )}
                 </div>

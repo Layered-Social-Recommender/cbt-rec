@@ -12,7 +12,7 @@ const PAGE_SIZE_USERS = 100;
 function PaginationControls({ page, totalPages, onPrev, onNext, startIdx, endIdx, total, entityName }) {
   return (
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem', flexWrap: 'wrap', gap: '0.5rem' }}>
-      <span style={{ fontSize: '0.85rem', color: '#64748b' }}>
+      <span style={{ fontSize: '0.85rem', color: '#71717a' }}>
         Showing {total === 0 ? 0 : startIdx + 1}–{endIdx} of {total} {entityName}
       </span>
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
@@ -20,20 +20,20 @@ function PaginationControls({ page, totalPages, onPrev, onNext, startIdx, endIdx
           onClick={onPrev}
           disabled={page === 1}
           style={{
-            padding: '0.35rem 0.75rem', border: '1px solid #e2e8f0', borderRadius: '0.375rem',
-            background: page === 1 ? '#f1f5f9' : '#fff', color: page === 1 ? '#94a3b8' : '#1e293b',
+            padding: '0.35rem 0.75rem', border: '1px solid #d4d4d4', borderRadius: '0.25rem',
+            background: page === 1 ? '#f4f4f5' : '#ffffff', color: page === 1 ? '#a1a1aa' : '#171717',
             cursor: page === 1 ? 'not-allowed' : 'pointer', fontSize: '0.85rem', fontWeight: 500
           }}
         >← Prev</button>
-        <span style={{ fontSize: '0.85rem', color: '#475569', padding: '0 0.25rem' }}>
+        <span style={{ fontSize: '0.85rem', color: '#52525b', padding: '0 0.25rem' }}>
           Page {page} of {totalPages}
         </span>
         <button
           onClick={onNext}
           disabled={page === totalPages}
           style={{
-            padding: '0.35rem 0.75rem', border: '1px solid #e2e8f0', borderRadius: '0.375rem',
-            background: page === totalPages ? '#f1f5f9' : '#fff', color: page === totalPages ? '#94a3b8' : '#1e293b',
+            padding: '0.35rem 0.75rem', border: '1px solid #d4d4d4', borderRadius: '0.25rem',
+            background: page === totalPages ? '#f4f4f5' : '#ffffff', color: page === totalPages ? '#a1a1aa' : '#171717',
             cursor: page === totalPages ? 'not-allowed' : 'pointer', fontSize: '0.85rem', fontWeight: 500
           }}
         >Next →</button>
@@ -102,7 +102,7 @@ function UsersTab({ users }) {
           <tbody>
             {displayed.map((u, i) => (
               <tr key={u.canonical_acct} style={{ cursor: 'pointer' }} onClick={() => setSelected(u)}>
-                <td style={{ color: '#94a3b8', fontSize: '0.78rem', width: 40 }}>{startIdx + i + 1}</td>
+                <td style={{ color: '#71717a', fontSize: '0.78rem', width: 40 }}>{startIdx + i + 1}</td>
                 <td style={{ fontFamily: 'monospace', fontSize: '0.85rem' }}>{u.canonical_acct}</td>
                 <td>{fmt(u.followers_count)}</td>
                 <td>{fmt(u.following_count)}</td>
@@ -145,7 +145,7 @@ function UsersTab({ users }) {
         }}>
           <button
             onClick={() => setSelected(null)}
-            style={{ marginBottom: '1rem', padding: '0.5rem 1rem', cursor: 'pointer', border: '1px solid #e2e8f0', borderRadius: '0.375rem' }}
+            style={{ marginBottom: '1rem', padding: '0.4rem 0.8rem', cursor: 'pointer', border: '1px solid #d4d4d4', borderRadius: '0.25rem', background: '#ffffff', color: '#171717' }}
           >✕ Close</button>
           <h3 style={{ fontFamily: 'monospace', wordBreak: 'break-all', marginBottom: '1rem' }}>
             {selected.canonical_acct}
@@ -160,7 +160,7 @@ function UsersTab({ users }) {
             <tbody>
               {Object.entries(selected).map(([k, v]) => (
                 <tr key={k}>
-                  <td style={{ fontWeight: 600, color: '#64748b', paddingRight: '1rem' }}>{k}</td>
+                  <td style={{ fontWeight: 600, color: '#71717a', paddingRight: '1rem' }}>{k}</td>
                   <td>{fmt(v)}</td>
                 </tr>
               ))}
@@ -277,7 +277,7 @@ export default function DataLayer() {
           'Referential integrity passed',
         ].map(msg => (
           <div key={msg} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
-            <span style={{ color: '#10b981', fontWeight: 700 }}>✓</span>
+            <span style={{ color: '#171717', fontWeight: 700 }}>✓</span>
             <span>{msg}</span>
           </div>
         ))}
