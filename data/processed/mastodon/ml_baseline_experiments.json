@@ -1,0 +1,982 @@
+{
+  "experiment_title": "CBT-Rec Stage 1: Machine Learning Baseline Link Prediction",
+  "timestamp": "2026-10-20T08:22:51.466677+00:00",
+  "dataset_provenance": "Bounded Mastodon snapshot (270 accounts, 214 follow edges)",
+  "split_summary": {
+    "total_nodes": 270,
+    "total_edges": 214,
+    "train_edges_count": 178,
+    "warm_test_edges_count": 21,
+    "cold_test_edges_count": 15,
+    "warm_test_users_count": 5,
+    "cold_test_users_count": 15,
+    "density_train": 0.00245077791546193,
+    "seed": 42
+  },
+  "evaluation_protocol": {
+    "edge_split": "Structural edge holdout (no temporal imputation)",
+    "training_graph": "Constructed strictly from E_train (178 edges)",
+    "candidate_generation": "All accounts in V excluding self and training follows",
+    "negative_sampling": "Implicit feedback; excludes all observed positive edges (train and test)",
+    "aggregation": "Macro-averaged per user across evaluated targets with standard error"
+  },
+  "cold_start_audit_notes": {
+    "bpr_mf_mechanism": "For cold-start users (out-degree=0 in G_train), source embeddings W_out receive 0 gradient updates and remain at random Gaussian initialization. Candidate ranking is driven primarily by learned target bias b_in and target embedding magnitude, functioning as a global authority prior rather than personalized learning.",
+    "graph_baselines_mechanism": "For directed Common Neighbours, Adamic-Adar, and Jaccard, cold-start users have empty outgoing training neighborhoods (N_out=0), yielding identically 0.0 scores for all candidates. Residual ranking is determined strictly by deterministic tie-breaking (lexicographical username ordering)."
+  },
+  "results": [
+    {
+      "model_name": "In-Degree Popularity",
+      "model_params": {},
+      "warm_start_evaluation": {
+        "evaluated_users_count": 5,
+        "total_test_positives": 21,
+        "aggregation_method": "macro_averaged_per_user",
+        "summary": {
+          "mrr": {
+            "mean": 0.214743,
+            "std_error": 0.10419
+          },
+          "precision@5": {
+            "mean": 0.08,
+            "std_error": 0.043818
+          },
+          "recall@5": {
+            "mean": 0.4,
+            "std_error": 0.219089
+          },
+          "ndcg@5": {
+            "mean": 0.252372,
+            "std_error": 0.13823
+          },
+          "hitrate@5": {
+            "mean": 0.4,
+            "std_error": 0.219089
+          },
+          "precision@10": {
+            "mean": 0.04,
+            "std_error": 0.021909
+          },
+          "recall@10": {
+            "mean": 0.4,
+            "std_error": 0.219089
+          },
+          "ndcg@10": {
+            "mean": 0.252372,
+            "std_error": 0.13823
+          },
+          "hitrate@10": {
+            "mean": 0.4,
+            "std_error": 0.219089
+          }
+        }
+      },
+      "cold_start_evaluation": {
+        "evaluated_users_count": 15,
+        "total_test_positives": 15,
+        "aggregation_method": "macro_averaged_per_user",
+        "summary": {
+          "mrr": {
+            "mean": 0.522222,
+            "std_error": 0.064534
+          },
+          "precision@5": {
+            "mean": 0.2,
+            "std_error": 0.0
+          },
+          "recall@5": {
+            "mean": 1.0,
+            "std_error": 0.0
+          },
+          "ndcg@5": {
+            "mean": 0.643643,
+            "std_error": 0.04836
+          },
+          "hitrate@5": {
+            "mean": 1.0,
+            "std_error": 0.0
+          },
+          "precision@10": {
+            "mean": 0.1,
+            "std_error": 0.0
+          },
+          "recall@10": {
+            "mean": 1.0,
+            "std_error": 0.0
+          },
+          "ndcg@10": {
+            "mean": 0.643643,
+            "std_error": 0.04836
+          },
+          "hitrate@10": {
+            "mean": 1.0,
+            "std_error": 0.0
+          }
+        }
+      },
+      "combined_evaluation": {
+        "evaluated_users_count": 20,
+        "total_test_positives": 36,
+        "aggregation_method": "macro_averaged_per_user",
+        "summary": {
+          "mrr": {
+            "mean": 0.445352,
+            "std_error": 0.062509
+          },
+          "precision@5": {
+            "mean": 0.17,
+            "std_error": 0.015969
+          },
+          "recall@5": {
+            "mean": 0.85,
+            "std_error": 0.079844
+          },
+          "ndcg@5": {
+            "mean": 0.545825,
+            "std_error": 0.062809
+          },
+          "hitrate@5": {
+            "mean": 0.85,
+            "std_error": 0.079844
+          },
+          "precision@10": {
+            "mean": 0.085,
+            "std_error": 0.007984
+          },
+          "recall@10": {
+            "mean": 0.85,
+            "std_error": 0.079844
+          },
+          "ndcg@10": {
+            "mean": 0.545825,
+            "std_error": 0.062809
+          },
+          "hitrate@10": {
+            "mean": 0.85,
+            "std_error": 0.079844
+          }
+        }
+      }
+    },
+    {
+      "model_name": "Common Neighbours (Directed)",
+      "model_params": {},
+      "warm_start_evaluation": {
+        "evaluated_users_count": 5,
+        "total_test_positives": 21,
+        "aggregation_method": "macro_averaged_per_user",
+        "summary": {
+          "mrr": {
+            "mean": 0.022694,
+            "std_error": 0.00635
+          },
+          "precision@5": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "recall@5": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "ndcg@5": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "hitrate@5": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "precision@10": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "recall@10": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "ndcg@10": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "hitrate@10": {
+            "mean": 0.0,
+            "std_error": 0.0
+          }
+        }
+      },
+      "cold_start_evaluation": {
+        "evaluated_users_count": 15,
+        "total_test_positives": 15,
+        "aggregation_method": "macro_averaged_per_user",
+        "summary": {
+          "mrr": {
+            "mean": 0.01751,
+            "std_error": 0.002424
+          },
+          "precision@5": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "recall@5": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "ndcg@5": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "hitrate@5": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "precision@10": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "recall@10": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "ndcg@10": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "hitrate@10": {
+            "mean": 0.0,
+            "std_error": 0.0
+          }
+        }
+      },
+      "combined_evaluation": {
+        "evaluated_users_count": 20,
+        "total_test_positives": 36,
+        "aggregation_method": "macro_averaged_per_user",
+        "summary": {
+          "mrr": {
+            "mean": 0.018806,
+            "std_error": 0.002465
+          },
+          "precision@5": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "recall@5": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "ndcg@5": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "hitrate@5": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "precision@10": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "recall@10": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "ndcg@10": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "hitrate@10": {
+            "mean": 0.0,
+            "std_error": 0.0
+          }
+        }
+      }
+    },
+    {
+      "model_name": "Adamic-Adar (Directed)",
+      "model_params": {},
+      "warm_start_evaluation": {
+        "evaluated_users_count": 5,
+        "total_test_positives": 21,
+        "aggregation_method": "macro_averaged_per_user",
+        "summary": {
+          "mrr": {
+            "mean": 0.044369,
+            "std_error": 0.022768
+          },
+          "precision@5": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "recall@5": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "ndcg@5": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "hitrate@5": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "precision@10": {
+            "mean": 0.02,
+            "std_error": 0.017889
+          },
+          "recall@10": {
+            "mean": 0.025,
+            "std_error": 0.022361
+          },
+          "ndcg@10": {
+            "mean": 0.016863,
+            "std_error": 0.015083
+          },
+          "hitrate@10": {
+            "mean": 0.2,
+            "std_error": 0.178885
+          }
+        }
+      },
+      "cold_start_evaluation": {
+        "evaluated_users_count": 15,
+        "total_test_positives": 15,
+        "aggregation_method": "macro_averaged_per_user",
+        "summary": {
+          "mrr": {
+            "mean": 0.01751,
+            "std_error": 0.002424
+          },
+          "precision@5": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "recall@5": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "ndcg@5": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "hitrate@5": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "precision@10": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "recall@10": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "ndcg@10": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "hitrate@10": {
+            "mean": 0.0,
+            "std_error": 0.0
+          }
+        }
+      },
+      "combined_evaluation": {
+        "evaluated_users_count": 20,
+        "total_test_positives": 36,
+        "aggregation_method": "macro_averaged_per_user",
+        "summary": {
+          "mrr": {
+            "mean": 0.024225,
+            "std_error": 0.006517
+          },
+          "precision@5": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "recall@5": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "ndcg@5": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "hitrate@5": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "precision@10": {
+            "mean": 0.005,
+            "std_error": 0.004873
+          },
+          "recall@10": {
+            "mean": 0.00625,
+            "std_error": 0.006092
+          },
+          "ndcg@10": {
+            "mean": 0.004216,
+            "std_error": 0.004109
+          },
+          "hitrate@10": {
+            "mean": 0.05,
+            "std_error": 0.048734
+          }
+        }
+      }
+    },
+    {
+      "model_name": "Jaccard Coefficient (Directed)",
+      "model_params": {},
+      "warm_start_evaluation": {
+        "evaluated_users_count": 5,
+        "total_test_positives": 21,
+        "aggregation_method": "macro_averaged_per_user",
+        "summary": {
+          "mrr": {
+            "mean": 0.023057,
+            "std_error": 0.006571
+          },
+          "precision@5": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "recall@5": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "ndcg@5": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "hitrate@5": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "precision@10": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "recall@10": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "ndcg@10": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "hitrate@10": {
+            "mean": 0.0,
+            "std_error": 0.0
+          }
+        }
+      },
+      "cold_start_evaluation": {
+        "evaluated_users_count": 15,
+        "total_test_positives": 15,
+        "aggregation_method": "macro_averaged_per_user",
+        "summary": {
+          "mrr": {
+            "mean": 0.01751,
+            "std_error": 0.002424
+          },
+          "precision@5": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "recall@5": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "ndcg@5": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "hitrate@5": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "precision@10": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "recall@10": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "ndcg@10": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "hitrate@10": {
+            "mean": 0.0,
+            "std_error": 0.0
+          }
+        }
+      },
+      "combined_evaluation": {
+        "evaluated_users_count": 20,
+        "total_test_positives": 36,
+        "aggregation_method": "macro_averaged_per_user",
+        "summary": {
+          "mrr": {
+            "mean": 0.018897,
+            "std_error": 0.002509
+          },
+          "precision@5": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "recall@5": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "ndcg@5": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "hitrate@5": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "precision@10": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "recall@10": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "ndcg@10": {
+            "mean": 0.0,
+            "std_error": 0.0
+          },
+          "hitrate@10": {
+            "mean": 0.0,
+            "std_error": 0.0
+          }
+        }
+      }
+    },
+    {
+      "model_name": "BPR Matrix Factorization",
+      "model_params": {
+        "embedding_dim": 32,
+        "learning_rate": 0.05,
+        "reg_lambda": 0.01,
+        "epochs": 60,
+        "seed": 42
+      },
+      "warm_start_evaluation": {
+        "evaluated_users_count": 5,
+        "total_test_positives": 21,
+        "aggregation_method": "macro_averaged_per_user",
+        "summary": {
+          "mrr": {
+            "mean": 0.452151,
+            "std_error": 0.147026
+          },
+          "precision@5": {
+            "mean": 0.16,
+            "std_error": 0.035777
+          },
+          "recall@5": {
+            "mean": 0.45,
+            "std_error": 0.201866
+          },
+          "ndcg@5": {
+            "mean": 0.398197,
+            "std_error": 0.163999
+          },
+          "hitrate@5": {
+            "mean": 0.8,
+            "std_error": 0.178885
+          },
+          "precision@10": {
+            "mean": 0.14,
+            "std_error": 0.045607
+          },
+          "recall@10": {
+            "mean": 0.525,
+            "std_error": 0.181659
+          },
+          "ndcg@10": {
+            "mean": 0.428493,
+            "std_error": 0.157138
+          },
+          "hitrate@10": {
+            "mean": 0.8,
+            "std_error": 0.178885
+          }
+        }
+      },
+      "cold_start_evaluation": {
+        "evaluated_users_count": 15,
+        "total_test_positives": 15,
+        "aggregation_method": "macro_averaged_per_user",
+        "summary": {
+          "mrr": {
+            "mean": 0.6,
+            "std_error": 0.075031
+          },
+          "precision@5": {
+            "mean": 0.2,
+            "std_error": 0.0
+          },
+          "recall@5": {
+            "mean": 1.0,
+            "std_error": 0.0
+          },
+          "ndcg@5": {
+            "mean": 0.701581,
+            "std_error": 0.056137
+          },
+          "hitrate@5": {
+            "mean": 1.0,
+            "std_error": 0.0
+          },
+          "precision@10": {
+            "mean": 0.1,
+            "std_error": 0.0
+          },
+          "recall@10": {
+            "mean": 1.0,
+            "std_error": 0.0
+          },
+          "ndcg@10": {
+            "mean": 0.701581,
+            "std_error": 0.056137
+          },
+          "hitrate@10": {
+            "mean": 1.0,
+            "std_error": 0.0
+          }
+        }
+      },
+      "combined_evaluation": {
+        "evaluated_users_count": 20,
+        "total_test_positives": 36,
+        "aggregation_method": "macro_averaged_per_user",
+        "summary": {
+          "mrr": {
+            "mean": 0.563038,
+            "std_error": 0.068721
+          },
+          "precision@5": {
+            "mean": 0.19,
+            "std_error": 0.009747
+          },
+          "recall@5": {
+            "mean": 0.8625,
+            "std_error": 0.073368
+          },
+          "ndcg@5": {
+            "mean": 0.625735,
+            "std_error": 0.0657
+          },
+          "hitrate@5": {
+            "mean": 0.95,
+            "std_error": 0.048734
+          },
+          "precision@10": {
+            "mean": 0.11,
+            "std_error": 0.012042
+          },
+          "recall@10": {
+            "mean": 0.88125,
+            "std_error": 0.064635
+          },
+          "ndcg@10": {
+            "mean": 0.633309,
+            "std_error": 0.063364
+          },
+          "hitrate@10": {
+            "mean": 0.95,
+            "std_error": 0.048734
+          }
+        }
+      }
+    },
+    {
+      "model_name": "Directed LightGCN (L=1)",
+      "model_params": {
+        "embedding_dim": 32,
+        "num_layers": 1,
+        "learning_rate": 0.01,
+        "reg_lambda": 0.01,
+        "epochs": 60,
+        "optimizer": "adam",
+        "seed": 42
+      },
+      "warm_start_evaluation": {
+        "evaluated_users_count": 5,
+        "total_test_positives": 21,
+        "aggregation_method": "macro_averaged_per_user",
+        "summary": {
+          "mrr": {
+            "mean": 0.487934,
+            "std_error": 0.192613
+          },
+          "precision@5": {
+            "mean": 0.12,
+            "std_error": 0.043818
+          },
+          "recall@5": {
+            "mean": 0.425,
+            "std_error": 0.21095
+          },
+          "ndcg@5": {
+            "mean": 0.433916,
+            "std_error": 0.208551
+          },
+          "hitrate@5": {
+            "mean": 0.6,
+            "std_error": 0.219089
+          },
+          "precision@10": {
+            "mean": 0.06,
+            "std_error": 0.021909
+          },
+          "recall@10": {
+            "mean": 0.425,
+            "std_error": 0.21095
+          },
+          "ndcg@10": {
+            "mean": 0.425294,
+            "std_error": 0.210867
+          },
+          "hitrate@10": {
+            "mean": 0.6,
+            "std_error": 0.219089
+          }
+        }
+      },
+      "cold_start_evaluation": {
+        "evaluated_users_count": 15,
+        "total_test_positives": 15,
+        "aggregation_method": "macro_averaged_per_user",
+        "summary": {
+          "mrr": {
+            "mean": 0.644444,
+            "std_error": 0.076766
+          },
+          "precision@5": {
+            "mean": 0.2,
+            "std_error": 0.0
+          },
+          "recall@5": {
+            "mean": 1.0,
+            "std_error": 0.0
+          },
+          "ndcg@5": {
+            "mean": 0.734915,
+            "std_error": 0.05738
+          },
+          "hitrate@5": {
+            "mean": 1.0,
+            "std_error": 0.0
+          },
+          "precision@10": {
+            "mean": 0.1,
+            "std_error": 0.0
+          },
+          "recall@10": {
+            "mean": 1.0,
+            "std_error": 0.0
+          },
+          "ndcg@10": {
+            "mean": 0.734915,
+            "std_error": 0.05738
+          },
+          "hitrate@10": {
+            "mean": 1.0,
+            "std_error": 0.0
+          }
+        }
+      },
+      "combined_evaluation": {
+        "evaluated_users_count": 20,
+        "total_test_positives": 36,
+        "aggregation_method": "macro_averaged_per_user",
+        "summary": {
+          "mrr": {
+            "mean": 0.605317,
+            "std_error": 0.076572
+          },
+          "precision@5": {
+            "mean": 0.18,
+            "std_error": 0.013416
+          },
+          "recall@5": {
+            "mean": 0.85625,
+            "std_error": 0.076687
+          },
+          "ndcg@5": {
+            "mean": 0.659665,
+            "std_error": 0.073619
+          },
+          "hitrate@5": {
+            "mean": 0.9,
+            "std_error": 0.067082
+          },
+          "precision@10": {
+            "mean": 0.09,
+            "std_error": 0.006708
+          },
+          "recall@10": {
+            "mean": 0.85625,
+            "std_error": 0.076687
+          },
+          "ndcg@10": {
+            "mean": 0.65751,
+            "std_error": 0.074362
+          },
+          "hitrate@10": {
+            "mean": 0.9,
+            "std_error": 0.067082
+          }
+        }
+      }
+    },
+    {
+      "model_name": "Directed LightGCN (L=2)",
+      "model_params": {
+        "embedding_dim": 32,
+        "num_layers": 2,
+        "learning_rate": 0.01,
+        "reg_lambda": 0.01,
+        "epochs": 60,
+        "optimizer": "adam",
+        "seed": 42
+      },
+      "warm_start_evaluation": {
+        "evaluated_users_count": 5,
+        "total_test_positives": 21,
+        "aggregation_method": "macro_averaged_per_user",
+        "summary": {
+          "mrr": {
+            "mean": 0.470952,
+            "std_error": 0.195932
+          },
+          "precision@5": {
+            "mean": 0.12,
+            "std_error": 0.043818
+          },
+          "recall@5": {
+            "mean": 0.425,
+            "std_error": 0.21095
+          },
+          "ndcg@5": {
+            "mean": 0.429214,
+            "std_error": 0.209782
+          },
+          "hitrate@5": {
+            "mean": 0.6,
+            "std_error": 0.219089
+          },
+          "precision@10": {
+            "mean": 0.06,
+            "std_error": 0.021909
+          },
+          "recall@10": {
+            "mean": 0.425,
+            "std_error": 0.21095
+          },
+          "ndcg@10": {
+            "mean": 0.421787,
+            "std_error": 0.211882
+          },
+          "hitrate@10": {
+            "mean": 0.6,
+            "std_error": 0.219089
+          }
+        }
+      },
+      "cold_start_evaluation": {
+        "evaluated_users_count": 15,
+        "total_test_positives": 15,
+        "aggregation_method": "macro_averaged_per_user",
+        "summary": {
+          "mrr": {
+            "mean": 0.655556,
+            "std_error": 0.07448
+          },
+          "precision@5": {
+            "mean": 0.2,
+            "std_error": 0.0
+          },
+          "recall@5": {
+            "mean": 1.0,
+            "std_error": 0.0
+          },
+          "ndcg@5": {
+            "mean": 0.743643,
+            "std_error": 0.055589
+          },
+          "hitrate@5": {
+            "mean": 1.0,
+            "std_error": 0.0
+          },
+          "precision@10": {
+            "mean": 0.1,
+            "std_error": 0.0
+          },
+          "recall@10": {
+            "mean": 1.0,
+            "std_error": 0.0
+          },
+          "ndcg@10": {
+            "mean": 0.743643,
+            "std_error": 0.055589
+          },
+          "hitrate@10": {
+            "mean": 1.0,
+            "std_error": 0.0
+          }
+        }
+      },
+      "combined_evaluation": {
+        "evaluated_users_count": 20,
+        "total_test_positives": 36,
+        "aggregation_method": "macro_averaged_per_user",
+        "summary": {
+          "mrr": {
+            "mean": 0.609405,
+            "std_error": 0.076415
+          },
+          "precision@5": {
+            "mean": 0.18,
+            "std_error": 0.013416
+          },
+          "recall@5": {
+            "mean": 0.85625,
+            "std_error": 0.076687
+          },
+          "ndcg@5": {
+            "mean": 0.665036,
+            "std_error": 0.073591
+          },
+          "hitrate@5": {
+            "mean": 0.9,
+            "std_error": 0.067082
+          },
+          "precision@10": {
+            "mean": 0.09,
+            "std_error": 0.006708
+          },
+          "recall@10": {
+            "mean": 0.85625,
+            "std_error": 0.076687
+          },
+          "ndcg@10": {
+            "mean": 0.663179,
+            "std_error": 0.074265
+          },
+          "hitrate@10": {
+            "mean": 0.9,
+            "std_error": 0.067082
+          }
+        }
+      }
+    }
+  ]
+}

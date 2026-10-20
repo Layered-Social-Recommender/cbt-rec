@@ -1,0 +1,358 @@
+{
+  "experiment_title": "CBT-Rec Layer 5 & 6 Systematic Evaluation",
+  "timestamp": "2026-10-18T22:22:11.803116+00:00",
+  "top_k": 10,
+  "dataset": "Mastodon social snapshot (270 accounts, 214 edges)",
+  "results": [
+    {
+      "configuration_name": "Relevance-Only Baseline",
+      "description": "Pure structural/interest relevance without trust or diversity",
+      "weights": {
+        "relevance": 1.0,
+        "trust": 0.0,
+        "context": 0.0,
+        "behaviour": 0.0
+      },
+      "diversity_lambda": 0.0,
+      "targets_evaluated": 120,
+      "top_k": 10,
+      "metrics": {
+        "avg_mean_trust": 0.1637060883333334,
+        "avg_mean_relevance": 0.63747151,
+        "avg_overall_score": 0.63747151,
+        "avg_community_count_topk": 2.6333333333333333,
+        "avg_cross_community_ratio": 0.28750000000000003,
+        "avg_community_entropy": 0.9053662379389974
+      },
+      "sample_recommendations": {
+        "Mastodon@mastodon.social": [
+          {
+            "rank": 1,
+            "candidate": "joinloops@mastodon.social",
+            "overall_score": 0.616222,
+            "trust": 0.290774,
+            "relevance": 0.616222,
+            "community": 0,
+            "is_exploration": true
+          },
+          {
+            "rank": 2,
+            "candidate": "openforumeurope@mastodon.social",
+            "overall_score": 0.616222,
+            "trust": 0.020299,
+            "relevance": 0.616222,
+            "community": 0,
+            "is_exploration": true
+          },
+          {
+            "rank": 3,
+            "candidate": "rabble@mastodon.social",
+            "overall_score": 0.616222,
+            "trust": 0.031409,
+            "relevance": 0.616222,
+            "community": 0,
+            "is_exploration": true
+          },
+          {
+            "rank": 4,
+            "candidate": "blaine@mastodon.social",
+            "overall_score": 0.616222,
+            "trust": 0.034379,
+            "relevance": 0.616222,
+            "community": 0,
+            "is_exploration": true
+          },
+          {
+            "rank": 5,
+            "candidate": "robin@mastodon.social",
+            "overall_score": 0.616222,
+            "trust": 0.033263,
+            "relevance": 0.616222,
+            "community": 0,
+            "is_exploration": true
+          }
+        ]
+      }
+    },
+    {
+      "configuration_name": "Relevance + Trust",
+      "description": "Combines relevance with continuous MCDM trust; no diversity reranking",
+      "weights": {
+        "relevance": 0.5,
+        "trust": 0.5,
+        "context": 0.0,
+        "behaviour": 0.0
+      },
+      "diversity_lambda": 0.0,
+      "targets_evaluated": 120,
+      "top_k": 10,
+      "metrics": {
+        "avg_mean_trust": 0.18823749500000006,
+        "avg_mean_relevance": 0.6365429324999999,
+        "avg_overall_score": 0.41239026499999987,
+        "avg_community_count_topk": 2.6666666666666665,
+        "avg_cross_community_ratio": 0.2891666666666667,
+        "avg_community_entropy": 0.9214788703139867
+      },
+      "sample_recommendations": {
+        "Mastodon@mastodon.social": [
+          {
+            "rank": 1,
+            "candidate": "joinloops@mastodon.social",
+            "overall_score": 0.453498,
+            "trust": 0.290774,
+            "relevance": 0.616222,
+            "community": 0,
+            "is_exploration": true
+          },
+          {
+            "rank": 2,
+            "candidate": "Steve_Bate@mastodon.social",
+            "overall_score": 0.443186,
+            "trust": 0.277086,
+            "relevance": 0.609286,
+            "community": 2,
+            "is_exploration": true
+          },
+          {
+            "rank": 3,
+            "candidate": "blaine@mastodon.social",
+            "overall_score": 0.325301,
+            "trust": 0.034379,
+            "relevance": 0.616222,
+            "community": 0,
+            "is_exploration": true
+          },
+          {
+            "rank": 4,
+            "candidate": "robin@mastodon.social",
+            "overall_score": 0.324742,
+            "trust": 0.033263,
+            "relevance": 0.616222,
+            "community": 0,
+            "is_exploration": true
+          },
+          {
+            "rank": 5,
+            "candidate": "rabble@mastodon.social",
+            "overall_score": 0.323815,
+            "trust": 0.031409,
+            "relevance": 0.616222,
+            "community": 0,
+            "is_exploration": true
+          }
+        ]
+      }
+    },
+    {
+      "configuration_name": "Hybrid CBT-Rec (No Diversity)",
+      "description": "Multi-signal (Relevance, Trust, Context, Behaviour); lambda=0.0",
+      "weights": {
+        "relevance": 0.4,
+        "trust": 0.3,
+        "context": 0.15,
+        "behaviour": 0.15
+      },
+      "diversity_lambda": 0.0,
+      "targets_evaluated": 120,
+      "top_k": 10,
+      "metrics": {
+        "avg_mean_trust": 0.18823749500000006,
+        "avg_mean_relevance": 0.6365429324999999,
+        "avg_overall_score": 0.375956665,
+        "avg_community_count_topk": 2.6666666666666665,
+        "avg_cross_community_ratio": 0.2891666666666667,
+        "avg_community_entropy": 0.9214788703139867
+      },
+      "sample_recommendations": {
+        "Mastodon@mastodon.social": [
+          {
+            "rank": 1,
+            "candidate": "joinloops@mastodon.social",
+            "overall_score": 0.371221,
+            "trust": 0.290774,
+            "relevance": 0.616222,
+            "community": 0,
+            "is_exploration": true
+          },
+          {
+            "rank": 2,
+            "candidate": "Steve_Bate@mastodon.social",
+            "overall_score": 0.36434,
+            "trust": 0.277086,
+            "relevance": 0.609286,
+            "community": 2,
+            "is_exploration": true
+          },
+          {
+            "rank": 3,
+            "candidate": "blaine@mastodon.social",
+            "overall_score": 0.294303,
+            "trust": 0.034379,
+            "relevance": 0.616222,
+            "community": 0,
+            "is_exploration": true
+          },
+          {
+            "rank": 4,
+            "candidate": "robin@mastodon.social",
+            "overall_score": 0.293968,
+            "trust": 0.033263,
+            "relevance": 0.616222,
+            "community": 0,
+            "is_exploration": true
+          },
+          {
+            "rank": 5,
+            "candidate": "rabble@mastodon.social",
+            "overall_score": 0.293411,
+            "trust": 0.031409,
+            "relevance": 0.616222,
+            "community": 0,
+            "is_exploration": true
+          }
+        ]
+      }
+    },
+    {
+      "configuration_name": "Full CBT-Rec (Default \u03bb=0.30)",
+      "description": "Approved CBT-Rec pipeline: Multi-signal + MMR community diversification",
+      "weights": {
+        "relevance": 0.4,
+        "trust": 0.3,
+        "context": 0.15,
+        "behaviour": 0.15
+      },
+      "diversity_lambda": 0.3,
+      "targets_evaluated": 120,
+      "top_k": 10,
+      "metrics": {
+        "avg_mean_trust": 0.17589492500000004,
+        "avg_mean_relevance": 0.46256626500000003,
+        "avg_overall_score": 0.4525130833333332,
+        "avg_community_count_topk": 7.008333333333334,
+        "avg_cross_community_ratio": 0.6508333333333335,
+        "avg_community_entropy": 2.321908438738998
+      },
+      "sample_recommendations": {
+        "Mastodon@mastodon.social": [
+          {
+            "rank": 1,
+            "candidate": "joinloops@mastodon.social",
+            "overall_score": 0.559855,
+            "trust": 0.290774,
+            "relevance": 0.616222,
+            "community": 0,
+            "is_exploration": true
+          },
+          {
+            "rank": 2,
+            "candidate": "Steve_Bate@mastodon.social",
+            "overall_score": 0.555038,
+            "trust": 0.277086,
+            "relevance": 0.609286,
+            "community": 2,
+            "is_exploration": true
+          },
+          {
+            "rank": 3,
+            "candidate": "blaine@mastodon.social",
+            "overall_score": 0.386012,
+            "trust": 0.034379,
+            "relevance": 0.616222,
+            "community": 0,
+            "is_exploration": true
+          },
+          {
+            "rank": 4,
+            "candidate": "zrythm@mastodon.social",
+            "overall_score": 0.382341,
+            "trust": 0.026148,
+            "relevance": 0.609286,
+            "community": 2,
+            "is_exploration": true
+          },
+          {
+            "rank": 5,
+            "candidate": "robin@mastodon.social",
+            "overall_score": 0.335778,
+            "trust": 0.033263,
+            "relevance": 0.616222,
+            "community": 0,
+            "is_exploration": true
+          }
+        ]
+      }
+    },
+    {
+      "configuration_name": "CBT-Rec High Diversity (\u03bb=0.60)",
+      "description": "Exploration-focused configuration with aggressive community spread",
+      "weights": {
+        "relevance": 0.4,
+        "trust": 0.3,
+        "context": 0.15,
+        "behaviour": 0.15
+      },
+      "diversity_lambda": 0.6,
+      "targets_evaluated": 120,
+      "top_k": 10,
+      "metrics": {
+        "avg_mean_trust": 0.1695747066666667,
+        "avg_mean_relevance": 0.4485615191666668,
+        "avg_overall_score": 0.6004991975,
+        "avg_community_count_topk": 7.35,
+        "avg_cross_community_ratio": 0.6508333333333335,
+        "avg_community_entropy": 2.390241772072331
+      },
+      "sample_recommendations": {
+        "Mastodon@mastodon.social": [
+          {
+            "rank": 1,
+            "candidate": "joinloops@mastodon.social",
+            "overall_score": 0.748488,
+            "trust": 0.290774,
+            "relevance": 0.616222,
+            "community": 0,
+            "is_exploration": true
+          },
+          {
+            "rank": 2,
+            "candidate": "Steve_Bate@mastodon.social",
+            "overall_score": 0.745736,
+            "trust": 0.277086,
+            "relevance": 0.609286,
+            "community": 2,
+            "is_exploration": true
+          },
+          {
+            "rank": 3,
+            "candidate": "blaine@mastodon.social",
+            "overall_score": 0.477721,
+            "trust": 0.034379,
+            "relevance": 0.616222,
+            "community": 0,
+            "is_exploration": true
+          },
+          {
+            "rank": 4,
+            "candidate": "zrythm@mastodon.social",
+            "overall_score": 0.475624,
+            "trust": 0.026148,
+            "relevance": 0.609286,
+            "community": 2,
+            "is_exploration": true
+          },
+          {
+            "rank": 5,
+            "candidate": "robin@mastodon.social",
+            "overall_score": 0.377587,
+            "trust": 0.033263,
+            "relevance": 0.616222,
+            "community": 0,
+            "is_exploration": true
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,742 @@
+{
+  "experiment_title": "CBT-Rec Stage 3: Hybrid LightGCN + MCDM Trust Ranking Evaluation",
+  "timestamp": "2026-10-20T09:33:39.311430+00:00",
+  "dataset_provenance": "Bounded Mastodon snapshot (270 accounts, 214 follow edges)",
+  "split_summary": {
+    "total_nodes": 270,
+    "total_edges": 214,
+    "train_edges_count": 178,
+    "warm_test_edges_count": 21,
+    "cold_test_edges_count": 15,
+    "warm_test_users_count": 5,
+    "cold_test_users_count": 15,
+    "density_train": 0.00245077791546193,
+    "seed": 42
+  },
+  "results": [
+    {
+      "model_name": "Existing Heuristic Hybrid Ranking",
+      "model_description": "Layer 5 Heuristic: 0.40 Rel (Graph prox) + 0.30 Trust + 0.15 Ctx + 0.15 Beh with MMR (lambda=0.30)",
+      "warm_start_evaluation": {
+        "evaluated_users_count": 5,
+        "total_test_positives": 21,
+        "aggregation_method": "macro_averaged_per_user",
+        "summary": {
+          "mrr": {
+            "mean": 0.433333,
+            "std_error": 0.036515
+          },
+          "precision@5": {
+            "mean": 0.2,
+            "std_error": 0.0
+          },
+          "recall@5": {
+            "mean": 0.516667,
+            "std_error": 0.179737
+          },
+          "ndcg@5": {
+            "mean": 0.37942,
+            "std_error": 0.094133
+          },
+          "hitrate@5": {
+            "mean": 1.0,
+            "std_error": 0.0
+          },
+          "precision@10": {
+            "mean": 0.1,
+            "std_error": 0.0
+          },
+          "recall@10": {
+            "mean": 0.516667,
+            "std_error": 0.179737
+          },
+          "ndcg@10": {
+            "mean": 0.362177,
+            "std_error": 0.101968
+          },
+          "hitrate@10": {
+            "mean": 1.0,
+            "std_error": 0.0
+          },
+          "unique_communities@5": {
+            "mean": 4.6,
+            "std_error": 0.219089
+          },
+          "unique_communities@10": {
+            "mean": 9.6,
+            "std_error": 0.219089
+          },
+          "ild@5": {
+            "mean": 0.96,
+            "std_error": 0.021909
+          },
+          "ild@10": {
+            "mean": 0.991111,
+            "std_error": 0.004869
+          }
+        }
+      },
+      "cold_start_evaluation": {
+        "evaluated_users_count": 15,
+        "total_test_positives": 15,
+        "aggregation_method": "macro_averaged_per_user",
+        "summary": {
+          "mrr": {
+            "mean": 0.7,
+            "std_error": 0.074037
+          },
+          "precision@5": {
+            "mean": 0.2,
+            "std_error": 0.0
+          },
+          "recall@5": {
+            "mean": 1.0,
+            "std_error": 0.0
+          },
+          "ndcg@5": {
+            "mean": 0.776977,
+            "std_error": 0.055175
+          },
+          "hitrate@5": {
+            "mean": 1.0,
+            "std_error": 0.0
+          },
+          "precision@10": {
+            "mean": 0.1,
+            "std_error": 0.0
+          },
+          "recall@10": {
+            "mean": 1.0,
+            "std_error": 0.0
+          },
+          "ndcg@10": {
+            "mean": 0.776977,
+            "std_error": 0.055175
+          },
+          "hitrate@10": {
+            "mean": 1.0,
+            "std_error": 0.0
+          },
+          "unique_communities@5": {
+            "mean": 5.0,
+            "std_error": 0.0
+          },
+          "unique_communities@10": {
+            "mean": 10.0,
+            "std_error": 0.0
+          },
+          "ild@5": {
+            "mean": 1.0,
+            "std_error": 0.0
+          },
+          "ild@10": {
+            "mean": 1.0,
+            "std_error": 0.0
+          }
+        }
+      },
+      "combined_evaluation": {
+        "evaluated_users_count": 20,
+        "total_test_positives": 36,
+        "aggregation_method": "macro_averaged_per_user",
+        "summary": {
+          "mrr": {
+            "mean": 0.633333,
+            "std_error": 0.061914
+          },
+          "precision@5": {
+            "mean": 0.2,
+            "std_error": 0.0
+          },
+          "recall@5": {
+            "mean": 0.879167,
+            "std_error": 0.064878
+          },
+          "ndcg@5": {
+            "mean": 0.677588,
+            "std_error": 0.061221
+          },
+          "hitrate@5": {
+            "mean": 1.0,
+            "std_error": 0.0
+          },
+          "precision@10": {
+            "mean": 0.1,
+            "std_error": 0.0
+          },
+          "recall@10": {
+            "mean": 0.879167,
+            "std_error": 0.064878
+          },
+          "ndcg@10": {
+            "mean": 0.673277,
+            "std_error": 0.06305
+          },
+          "hitrate@10": {
+            "mean": 1.0,
+            "std_error": 0.0
+          },
+          "unique_communities@5": {
+            "mean": 4.9,
+            "std_error": 0.067082
+          },
+          "unique_communities@10": {
+            "mean": 9.9,
+            "std_error": 0.067082
+          },
+          "ild@5": {
+            "mean": 0.99,
+            "std_error": 0.006708
+          },
+          "ild@10": {
+            "mean": 0.997778,
+            "std_error": 0.001491
+          }
+        }
+      }
+    },
+    {
+      "model_name": "LightGCN Affinity Alone",
+      "model_description": "Directed LightGCN (L=2) pairwise score s(u, v) = sigmoid(<e_u^src, e_v^tgt> + b_v^in)",
+      "warm_start_evaluation": {
+        "evaluated_users_count": 5,
+        "total_test_positives": 21,
+        "aggregation_method": "macro_averaged_per_user",
+        "summary": {
+          "mrr": {
+            "mean": 0.470952,
+            "std_error": 0.195932
+          },
+          "precision@5": {
+            "mean": 0.12,
+            "std_error": 0.043818
+          },
+          "recall@5": {
+            "mean": 0.425,
+            "std_error": 0.21095
+          },
+          "ndcg@5": {
+            "mean": 0.429214,
+            "std_error": 0.209782
+          },
+          "hitrate@5": {
+            "mean": 0.6,
+            "std_error": 0.219089
+          },
+          "precision@10": {
+            "mean": 0.06,
+            "std_error": 0.021909
+          },
+          "recall@10": {
+            "mean": 0.425,
+            "std_error": 0.21095
+          },
+          "ndcg@10": {
+            "mean": 0.421787,
+            "std_error": 0.211882
+          },
+          "hitrate@10": {
+            "mean": 0.6,
+            "std_error": 0.219089
+          },
+          "unique_communities@5": {
+            "mean": 1.6,
+            "std_error": 0.219089
+          },
+          "unique_communities@10": {
+            "mean": 1.8,
+            "std_error": 0.334664
+          },
+          "ild@5": {
+            "mean": 0.32,
+            "std_error": 0.121326
+          },
+          "ild@10": {
+            "mean": 0.262222,
+            "std_error": 0.096844
+          }
+        }
+      },
+      "cold_start_evaluation": {
+        "evaluated_users_count": 15,
+        "total_test_positives": 15,
+        "aggregation_method": "macro_averaged_per_user",
+        "summary": {
+          "mrr": {
+            "mean": 0.655556,
+            "std_error": 0.07448
+          },
+          "precision@5": {
+            "mean": 0.2,
+            "std_error": 0.0
+          },
+          "recall@5": {
+            "mean": 1.0,
+            "std_error": 0.0
+          },
+          "ndcg@5": {
+            "mean": 0.743643,
+            "std_error": 0.055589
+          },
+          "hitrate@5": {
+            "mean": 1.0,
+            "std_error": 0.0
+          },
+          "precision@10": {
+            "mean": 0.1,
+            "std_error": 0.0
+          },
+          "recall@10": {
+            "mean": 1.0,
+            "std_error": 0.0
+          },
+          "ndcg@10": {
+            "mean": 0.743643,
+            "std_error": 0.055589
+          },
+          "hitrate@10": {
+            "mean": 1.0,
+            "std_error": 0.0
+          },
+          "unique_communities@5": {
+            "mean": 3.0,
+            "std_error": 0.0
+          },
+          "unique_communities@10": {
+            "mean": 3.0,
+            "std_error": 0.0
+          },
+          "ild@5": {
+            "mean": 0.7,
+            "std_error": 0.0
+          },
+          "ild@10": {
+            "mean": 0.548148,
+            "std_error": 0.024041
+          }
+        }
+      },
+      "combined_evaluation": {
+        "evaluated_users_count": 20,
+        "total_test_positives": 36,
+        "aggregation_method": "macro_averaged_per_user",
+        "summary": {
+          "mrr": {
+            "mean": 0.609405,
+            "std_error": 0.076415
+          },
+          "precision@5": {
+            "mean": 0.18,
+            "std_error": 0.013416
+          },
+          "recall@5": {
+            "mean": 0.85625,
+            "std_error": 0.076687
+          },
+          "ndcg@5": {
+            "mean": 0.665036,
+            "std_error": 0.073591
+          },
+          "hitrate@5": {
+            "mean": 0.9,
+            "std_error": 0.067082
+          },
+          "precision@10": {
+            "mean": 0.09,
+            "std_error": 0.006708
+          },
+          "recall@10": {
+            "mean": 0.85625,
+            "std_error": 0.076687
+          },
+          "ndcg@10": {
+            "mean": 0.663179,
+            "std_error": 0.074265
+          },
+          "hitrate@10": {
+            "mean": 0.9,
+            "std_error": 0.067082
+          },
+          "unique_communities@5": {
+            "mean": 2.65,
+            "std_error": 0.146202
+          },
+          "unique_communities@10": {
+            "mean": 2.7,
+            "std_error": 0.143178
+          },
+          "ild@5": {
+            "mean": 0.605,
+            "std_error": 0.047684
+          },
+          "ild@10": {
+            "mean": 0.476667,
+            "std_error": 0.04096
+          }
+        }
+      }
+    },
+    {
+      "model_name": "LightGCN + MCDM Trust",
+      "model_description": "Linear combination: 0.55 * LightGCN_Affinity + 0.45 * Layer4_MCDM_Trust",
+      "warm_start_evaluation": {
+        "evaluated_users_count": 5,
+        "total_test_positives": 21,
+        "aggregation_method": "macro_averaged_per_user",
+        "summary": {
+          "mrr": {
+            "mean": 0.45,
+            "std_error": 0.044721
+          },
+          "precision@5": {
+            "mean": 0.2,
+            "std_error": 0.0
+          },
+          "recall@5": {
+            "mean": 0.516667,
+            "std_error": 0.179737
+          },
+          "ndcg@5": {
+            "mean": 0.383599,
+            "std_error": 0.092778
+          },
+          "hitrate@5": {
+            "mean": 1.0,
+            "std_error": 0.0
+          },
+          "precision@10": {
+            "mean": 0.1,
+            "std_error": 0.0
+          },
+          "recall@10": {
+            "mean": 0.516667,
+            "std_error": 0.179737
+          },
+          "ndcg@10": {
+            "mean": 0.365293,
+            "std_error": 0.100787
+          },
+          "hitrate@10": {
+            "mean": 1.0,
+            "std_error": 0.0
+          },
+          "unique_communities@5": {
+            "mean": 2.0,
+            "std_error": 0.0
+          },
+          "unique_communities@10": {
+            "mean": 2.6,
+            "std_error": 0.219089
+          },
+          "ild@5": {
+            "mean": 0.44,
+            "std_error": 0.035777
+          },
+          "ild@10": {
+            "mean": 0.444444,
+            "std_error": 0.089332
+          }
+        }
+      },
+      "cold_start_evaluation": {
+        "evaluated_users_count": 15,
+        "total_test_positives": 15,
+        "aggregation_method": "macro_averaged_per_user",
+        "summary": {
+          "mrr": {
+            "mean": 0.633333,
+            "std_error": 0.068853
+          },
+          "precision@5": {
+            "mean": 0.2,
+            "std_error": 0.0
+          },
+          "recall@5": {
+            "mean": 1.0,
+            "std_error": 0.0
+          },
+          "ndcg@5": {
+            "mean": 0.727767,
+            "std_error": 0.051287
+          },
+          "hitrate@5": {
+            "mean": 1.0,
+            "std_error": 0.0
+          },
+          "precision@10": {
+            "mean": 0.1,
+            "std_error": 0.0
+          },
+          "recall@10": {
+            "mean": 1.0,
+            "std_error": 0.0
+          },
+          "ndcg@10": {
+            "mean": 0.727767,
+            "std_error": 0.051287
+          },
+          "hitrate@10": {
+            "mean": 1.0,
+            "std_error": 0.0
+          },
+          "unique_communities@5": {
+            "mean": 3.0,
+            "std_error": 0.0
+          },
+          "unique_communities@10": {
+            "mean": 3.0,
+            "std_error": 0.0
+          },
+          "ild@5": {
+            "mean": 0.7,
+            "std_error": 0.0
+          },
+          "ild@10": {
+            "mean": 0.511111,
+            "std_error": 0.0
+          }
+        }
+      },
+      "combined_evaluation": {
+        "evaluated_users_count": 20,
+        "total_test_positives": 36,
+        "aggregation_method": "macro_averaged_per_user",
+        "summary": {
+          "mrr": {
+            "mean": 0.5875,
+            "std_error": 0.055738
+          },
+          "precision@5": {
+            "mean": 0.2,
+            "std_error": 0.0
+          },
+          "recall@5": {
+            "mean": 0.879167,
+            "std_error": 0.064878
+          },
+          "ndcg@5": {
+            "mean": 0.641725,
+            "std_error": 0.055929
+          },
+          "hitrate@5": {
+            "mean": 1.0,
+            "std_error": 0.0
+          },
+          "precision@10": {
+            "mean": 0.1,
+            "std_error": 0.0
+          },
+          "recall@10": {
+            "mean": 0.879167,
+            "std_error": 0.064878
+          },
+          "ndcg@10": {
+            "mean": 0.637149,
+            "std_error": 0.057846
+          },
+          "hitrate@10": {
+            "mean": 1.0,
+            "std_error": 0.0
+          },
+          "unique_communities@5": {
+            "mean": 2.75,
+            "std_error": 0.096825
+          },
+          "unique_communities@10": {
+            "mean": 2.9,
+            "std_error": 0.067082
+          },
+          "ild@5": {
+            "mean": 0.635,
+            "std_error": 0.026716
+          },
+          "ild@10": {
+            "mean": 0.494444,
+            "std_error": 0.023247
+          }
+        }
+      }
+    },
+    {
+      "model_name": "LightGCN + Trust + Diversity Reranking",
+      "model_description": "LightGCN + MCDM Trust combined score reranked via MMR community novelty (lambda=0.30)",
+      "warm_start_evaluation": {
+        "evaluated_users_count": 5,
+        "total_test_positives": 21,
+        "aggregation_method": "macro_averaged_per_user",
+        "summary": {
+          "mrr": {
+            "mean": 0.45,
+            "std_error": 0.044721
+          },
+          "precision@5": {
+            "mean": 0.2,
+            "std_error": 0.0
+          },
+          "recall@5": {
+            "mean": 0.516667,
+            "std_error": 0.179737
+          },
+          "ndcg@5": {
+            "mean": 0.383599,
+            "std_error": 0.092778
+          },
+          "hitrate@5": {
+            "mean": 1.0,
+            "std_error": 0.0
+          },
+          "precision@10": {
+            "mean": 0.1,
+            "std_error": 0.0
+          },
+          "recall@10": {
+            "mean": 0.516667,
+            "std_error": 0.179737
+          },
+          "ndcg@10": {
+            "mean": 0.365293,
+            "std_error": 0.100787
+          },
+          "hitrate@10": {
+            "mean": 1.0,
+            "std_error": 0.0
+          },
+          "unique_communities@5": {
+            "mean": 5.0,
+            "std_error": 0.0
+          },
+          "unique_communities@10": {
+            "mean": 10.0,
+            "std_error": 0.0
+          },
+          "ild@5": {
+            "mean": 1.0,
+            "std_error": 0.0
+          },
+          "ild@10": {
+            "mean": 1.0,
+            "std_error": 0.0
+          }
+        }
+      },
+      "cold_start_evaluation": {
+        "evaluated_users_count": 15,
+        "total_test_positives": 15,
+        "aggregation_method": "macro_averaged_per_user",
+        "summary": {
+          "mrr": {
+            "mean": 0.633333,
+            "std_error": 0.068853
+          },
+          "precision@5": {
+            "mean": 0.2,
+            "std_error": 0.0
+          },
+          "recall@5": {
+            "mean": 1.0,
+            "std_error": 0.0
+          },
+          "ndcg@5": {
+            "mean": 0.727767,
+            "std_error": 0.051287
+          },
+          "hitrate@5": {
+            "mean": 1.0,
+            "std_error": 0.0
+          },
+          "precision@10": {
+            "mean": 0.1,
+            "std_error": 0.0
+          },
+          "recall@10": {
+            "mean": 1.0,
+            "std_error": 0.0
+          },
+          "ndcg@10": {
+            "mean": 0.727767,
+            "std_error": 0.051287
+          },
+          "hitrate@10": {
+            "mean": 1.0,
+            "std_error": 0.0
+          },
+          "unique_communities@5": {
+            "mean": 5.0,
+            "std_error": 0.0
+          },
+          "unique_communities@10": {
+            "mean": 10.0,
+            "std_error": 0.0
+          },
+          "ild@5": {
+            "mean": 1.0,
+            "std_error": 0.0
+          },
+          "ild@10": {
+            "mean": 1.0,
+            "std_error": 0.0
+          }
+        }
+      },
+      "combined_evaluation": {
+        "evaluated_users_count": 20,
+        "total_test_positives": 36,
+        "aggregation_method": "macro_averaged_per_user",
+        "summary": {
+          "mrr": {
+            "mean": 0.5875,
+            "std_error": 0.055738
+          },
+          "precision@5": {
+            "mean": 0.2,
+            "std_error": 0.0
+          },
+          "recall@5": {
+            "mean": 0.879167,
+            "std_error": 0.064878
+          },
+          "ndcg@5": {
+            "mean": 0.641725,
+            "std_error": 0.055929
+          },
+          "hitrate@5": {
+            "mean": 1.0,
+            "std_error": 0.0
+          },
+          "precision@10": {
+            "mean": 0.1,
+            "std_error": 0.0
+          },
+          "recall@10": {
+            "mean": 0.879167,
+            "std_error": 0.064878
+          },
+          "ndcg@10": {
+            "mean": 0.637149,
+            "std_error": 0.057846
+          },
+          "hitrate@10": {
+            "mean": 1.0,
+            "std_error": 0.0
+          },
+          "unique_communities@5": {
+            "mean": 5.0,
+            "std_error": 0.0
+          },
+          "unique_communities@10": {
+            "mean": 10.0,
+            "std_error": 0.0
+          },
+          "ild@5": {
+            "mean": 1.0,
+            "std_error": 0.0
+          },
+          "ild@10": {
+            "mean": 1.0,
+            "std_error": 0.0
+          }
+        }
+      }
+    }
+  ]
+}
