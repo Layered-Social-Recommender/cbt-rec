@@ -26,12 +26,10 @@ export default function Sidebar() {
           </NavLink>
         </div>
         <div className="nav-section">
-          <div className="nav-label">Next</div>
-          <span className="nav-link disabled">
-            Recommendation Engine
-            <br />
-            <span style={{ fontSize: '0.75rem', opacity: 0.6 }}>Coming Next</span>
-          </span>
+          <div className="nav-label">Engine &amp; Output</div>
+          <NavLink to="/recommendations" className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')}>
+            Recommendations
+          </NavLink>
         </div>
       </nav>
     </div>

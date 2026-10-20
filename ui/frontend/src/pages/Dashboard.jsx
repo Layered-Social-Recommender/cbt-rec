@@ -87,13 +87,6 @@ export default function Dashboard() {
           ))}
         </div>
       </div>
-
-      <div className="card">
-        <h2>About This Research Prototype</h2>
-        <p style={{ color: '#52525b', lineHeight: '1.75' }}>
-          CBT-Rec is a layered, trust-aware and context-aware social recommendation research framework built on real Mastodon network data. This dashboard allows inspection of each pipeline layer — from raw data collection (Layer 1) through social graph construction (Layer 2), feature extraction (Layer 3), and MCDM-based trustworthiness estimation (Layer 4). The Recommendation Engine (Layer 5) is the next phase of implementation.
-        </p>
-      </div>
     </div>
   );
 }

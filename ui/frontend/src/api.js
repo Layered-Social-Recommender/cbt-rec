@@ -59,3 +59,21 @@ export async function fetchTrustById(id) {
   if (!r.ok) return null;
   return r.json();
 }
+export async function fetchRecommendationTargets() {
+  const r = await fetch(`${API}/recommendations/targets`);
+  return r.json();
+}
+export async function fetchRecommendations(id, scoringMode = 'heuristic') {
+  const query = scoringMode ? `?scoring_mode=${encodeURIComponent(scoringMode)}` : '';
+  const r = await fetch(`${API}/recommendations/${encodeURIComponent(id)}${query}`);
+  return r.json();
+}
+export async function fetchCustomRecommendations(body) {
+  const r = await fetch(`${API}/recommendations/custom`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+  return r.json();
+}
+

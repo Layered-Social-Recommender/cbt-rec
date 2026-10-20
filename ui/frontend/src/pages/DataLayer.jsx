@@ -268,31 +268,6 @@ export default function DataLayer() {
       </div>
 
       <div className="card">
-        <h2>Data Integrity</h2>
-        {[
-          'Relationship references valid',
-          'Interaction references valid',
-          'Orphan relationships: 0',
-          'Orphan interactions: 0',
-          'Referential integrity passed',
-        ].map(msg => (
-          <div key={msg} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
-            <span style={{ color: '#171717', fontWeight: 700 }}>✓</span>
-            <span>{msg}</span>
-          </div>
-        ))}
-      </div>
-
-      <div className="card">
-        <h2>Stub Accounts</h2>
-        <div className="alert alert-info">
-          <strong>What are stub accounts?</strong> Some accounts appear in relationships or interactions without a complete profile being collected. CBT-Rec retains these accounts so graph references remain intact.
-          <br /><br />
-          <strong>Important:</strong> Missing feature data is represented as NULL rather than interpreted as zero.
-        </div>
-      </div>
-
-      <div className="card">
         <h2>Data Explorer</h2>
         <div className="tabs">
           {[

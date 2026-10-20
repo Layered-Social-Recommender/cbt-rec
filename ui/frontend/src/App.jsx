@@ -5,6 +5,7 @@ import DataLayer from './pages/DataLayer';
 import SocialGraph from './pages/SocialGraph';
 import Features from './pages/Features';
 import TrustMCDM from './pages/TrustMCDM';
+import Recommendations from './pages/Recommendations';
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
           <Route path="/graph" element={<SocialGraph />} />
           <Route path="/features" element={<Features />} />
           <Route path="/trust" element={<TrustMCDM />} />
+          <Route path="/recommendations" element={<Recommendations />} />
         </Routes>
       </main>
     </div>
