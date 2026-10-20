@@ -10,5 +10,17 @@
   "rate_limit": {
     "requests_per_second": 1.0,
     "max_retries": 1
+  },
+  "recommendation": {
+    "default_weights": {
+      "relevance": 0.40,
+      "trust": 0.30,
+      "context": 0.15,
+      "behaviour": 0.15
+    },
+    "diversity_lambda": 0.30,
+    "top_k": 10,
+    "max_candidates": 50,
+    "exploration_ratio": 0.30
   }
 }
