@@ -408,7 +408,8 @@ app.post('/api/recommendations/custom', async (req, res) => {
     }
 });
 
-const PORT = 3001;
-app.listen(PORT, () => {
-    console.log(`Backend API running on http://localhost:${PORT}`);
+const PORT = process.env.PORT || 3001;
+
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Backend API running on port ${PORT}`);
 });
