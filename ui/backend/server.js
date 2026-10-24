@@ -63,6 +63,15 @@ function sanitiseTimestamp(ts) {
 
 // --- ENDPOINTS ---
 
+// 0. Health Check
+app.get('/api/health', (req, res) => {
+    res.json({
+        status: 'ok',
+        service: 'cbt-rec-backend',
+        timestamp: new Date().toISOString()
+    });
+});
+
 // 1. Dashboard Summary
 app.get('/api/summary', async (req, res) => {
     try {
@@ -274,7 +283,10 @@ app.get('/api/trust/scores/:id', async (req, res) => {
 // 6. Recommendation Engine (Layer 5 & 6)
 const projectRoot = path.resolve(__dirname, '../../');
 const venvPythonWin = path.join(projectRoot, 'venv', 'Scripts', 'python.exe');
-const pythonCmd = fs.existsSync(venvPythonWin) ? venvPythonWin : 'python';
+const venvPythonLinux = path.join(projectRoot, 'venv', 'bin', 'python');
+const pythonCmd = fs.existsSync(venvPythonWin)
+    ? venvPythonWin
+    : (fs.existsSync(venvPythonLinux) ? venvPythonLinux : (process.env.PYTHON_CMD || 'python3'));
 
 app.get('/api/recommendations/targets', async (req, res) => {
     try {
@@ -411,5 +423,5 @@ app.post('/api/recommendations/custom', async (req, res) => {
 const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Backend API running on port ${PORT}`);
+    console.log(`Backend API running on http://0.0.0.0:${PORT}`);
 });

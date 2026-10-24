@@ -1,4 +1,11 @@
-const API = '/api';
+const getBaseApi = () => {
+  const envUrl = import.meta.env.VITE_API_URL || import.meta.env.VITE_API_BASE_URL;
+  if (!envUrl || !envUrl.trim()) return '/api';
+  const clean = envUrl.trim().replace(/\/+$/, '');
+  return clean.endsWith('/api') ? clean : (clean.startsWith('http') ? `${clean}/api` : clean);
+};
+
+const API = getBaseApi();
 
 
 export async function fetchSummary() {
